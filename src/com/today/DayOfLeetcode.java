@@ -5,7 +5,8 @@ import java.util.PriorityQueue;
 
 public class DayOfLeetcode {
 	public static void main(String[] args) {
-		testMinimumCost();
+		//testMinimumCost();
+		System.out.println("windows7测试");
 	}
 
 	public static void testIsSubstringPresent() {
