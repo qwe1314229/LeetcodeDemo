@@ -11,8 +11,8 @@ import java.util.Stack;
 
 public class Test1_20 {
 	public static void main(String[] args) {
-		testIsValid();
-		
+		//testIsValid();
+		System.out.println("windows10 测试");
 	}
 	
 	public static void testIsValid() {
