@@ -6,8 +6,42 @@ import java.util.Set;
 public class Test41_60 {
 	public static void main(String[] args) {
 		//System.out.println((int)'0');
-		multiply();
+		testIsMatch();
 	}
+
+	public static void testIsMatch() {
+		String s = "";
+		String p = "";
+		boolean isMatch = isMatch(s, p);
+		System.out.println(isMatch);
+		
+    }
+
+	public static boolean isMatch(String s, String p) {
+		int m = s.length(); 
+		int n = p.length();
+		boolean [][]dp = new boolean[m+1][n+1];
+		// 表示当s 和 p 都为空字符串的时候，是匹配
+		dp[0][0] = true;
+		
+		// 当p等于 *时，无论如何都是匹配
+		if("*".equals(p)){
+			return true;
+		}
+		
+		for (int i = 1; i <= m; i++) {
+			char x = s.charAt(i-1);
+			for (int j = 1; j <= n; j++) {
+				char y = p.charAt(j-1);
+				if(x == y || y == '?'){
+					dp[i][j] = dp[i-1][j-1];
+				} else if(y == '*'){
+					dp[i][j] = dp[i][j-1] || dp[i-1][j];
+				}
+			}
+		}
+		return false;
+    }
 
 	public static void multiply() {
 		String num1 = "1238";
