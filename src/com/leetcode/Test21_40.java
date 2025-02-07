@@ -13,7 +13,7 @@ import java.util.Stack;
 public class Test21_40 {
 	public static void main(String[] args) {
 		//System.out.println((int)'0');
-		testCombinationSum2();
+		testReverseKGroup();
 	}
 
 	public static void testCombinationSum2() {
@@ -894,13 +894,53 @@ public class Test21_40 {
 		c.next = d;
 		ListNode e = new ListNode(5);
 		d.next = e;
-		ListNode result = reverseKGroup(a,2);
+		ListNode result = reverseKGroup1(a,3);
 		while(result != null){
 			System.out.println(result.val);
 			result = result.next;
 		}
     }
-	
+
+	// leetcode 25.2
+	public static ListNode reverseKGroup1(ListNode head, int k) {
+		ListNode hair = new ListNode(-1);
+		hair.next = head;
+		ListNode prev = hair;
+		while(head != null){
+			ListNode tail = prev;
+			for (int i = 0; i < k; i++) {
+				tail = tail.next;
+				if(tail == null){
+					return hair.next;
+				}
+			}
+			ListNode next = tail.next;
+			tail.next = null;
+			ListNode[] reverse = myReverseKGroup(head,tail);
+			head = reverse[0];
+			tail = reverse[1];
+			// 将反转子链表连接到主链表
+			tail.next = next;
+			prev.next = head;
+			prev = tail;
+			head = tail.next;
+		}
+		return hair.next;
+    }
+
+	private static ListNode[] myReverseKGroup(ListNode head,ListNode tail){
+		ListNode prev = tail.next;
+		ListNode temp = head;
+		while(temp != null){
+			ListNode next = temp.next;
+			temp.next = prev;
+			prev = temp;
+			temp = next;
+		}
+		return new ListNode[]{tail,head};
+	}
+
+	// leetcode 25
 	public static ListNode reverseKGroup(ListNode head, int k) {
 		Stack<ListNode> stack = new Stack<>();
 		int m = 0;

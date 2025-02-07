@@ -9,6 +9,7 @@ public class Test41_60 {
 		testIsMatch();
 	}
 
+	
 	public static void testIsMatch() {
 		String s = "";
 		String p = "";
